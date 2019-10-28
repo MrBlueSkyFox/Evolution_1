@@ -20,7 +20,7 @@ def init(n, flag=False):
 def generation(map_species, n3):
     chance_of_mutation = 0.1
     chance_of_crossover = 0.9
-    pop_length = 20
+    pop_length = 50
     elite_map = find_elite(map_species)
     offspring_map = breeding(map_species, pop_length)
     offspring_map.extend(elite_map)
@@ -45,7 +45,7 @@ def f(x, y):
 
 
 def main(flag_3n=False):
-    the_map = init(50, flag_3n)
+    the_map = init(100, flag_3n)
     x_start = np.arange(len(the_map) - 1)
     y_start = np.arange(len(the_map) - 1)
     for i in range(0, len(the_map) - 1):
@@ -76,11 +76,12 @@ def main(flag_3n=False):
     if flag_3n:
         tittle += ' with 3n'
     ax.set_title(tittle)
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
+    ax.set_xlabel('x1')
+    ax.set_ylabel('x2')
+    ax.set_zlabel('fit_func')
+
     plt.show()
 
 
 main()
-main(True)
+# main(True)

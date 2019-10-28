@@ -1,7 +1,7 @@
 import numpy as np
 import random
 
-from tigr import fromint, toint, fit_function
+from lab1.tigr import fit_function
 
 max_x = -10
 min_x = 10

@@ -1,6 +1,5 @@
-import random
-from GeneticAlg import GeneticAlg
-from GeneticAlg import breeding, couples, crossover, mutate
+from lab1.GeneticAlg import GeneticAlg
+from lab1.GeneticAlg import breeding, couples, crossover, mutate
 import numpy as np
 import math
 import matplotlib.pyplot as plt

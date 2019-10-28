@@ -1,4 +1,4 @@
-from tigr import fit_function, toint, fromint
+from lab1.tigr import toint
 
 
 # p = np.zeros((3, 2))
