@@ -73,15 +73,15 @@ def pow_by_two(x):
 # FUNCTIONS_WITH_ONE_ARG = [abs_call, pow_by_two]
 # TERMINALS = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', -5.12, 5.12]
 TERMINALS = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10']
-MAX_DEPTH = 12
-MIN_DEPTH = 4
+MAX_DEPTH = 10
+MIN_DEPTH = 6
 POPULATION_SIZE = 80
 TOURNAMENT_SIZE = 2
-GENERATIONS = 100
+GENERATIONS = 500
 MIN_VALUE = -5.12
 MAX_VALUE = 5.12
 CROSSOVER_CHANCE = 0.9
-MUTATE_CHANCE = 0.1
+MUTATE_CHANCE = 0.01
 
-FUNCTIONS = [add, minus, pow_by_two]
+FUNCTIONS = [add, pow_by_two]
 FUNCTIONS_WITH_ONE_ARG = [pow_by_two]

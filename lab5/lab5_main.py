@@ -12,7 +12,7 @@ def init_strategy(n):
     the_strategy = np.zeros([n, 2])
     for i in range(0, n):
         the_strategy[i][0] = random_double(min_x=MIN_X, max_x=MAX_X)
-        the_strategy[i][1] = np.around(a=np.random.normal(0, 1, 1), decimals=5)
+        the_strategy[i][1] = np.around(a=np.random.normal(0, 0.1, 1), decimals=5)
     return EvolutionStrategy(the_strategy)
 
 
@@ -62,12 +62,14 @@ def main():
         if not (i % CHANGE_DISPERSION):
             if success_change / CHANGE_DISPERSION > 1 / 5:
                 for x1 in strategy.list_of_x:
-                    # x1[1] *= C_i
-                    x1[1] = round(x1[1] * C_i, 5)
+                    x1[1] *= C_i
+                    # x1[1] = round(x1[1] * C_i, 8)
+                    print('Iter ' + str(i) + " To higher " + str(x1[1]))
             elif success_change / CHANGE_DISPERSION < 1 / 5:
                 for x in strategy.list_of_x:
-                    # x[1] *= C_d
-                    x[1] = round(x[1] * C_d, 5)
+                    x[1] *= C_d
+                    # x[1] = round(x[1] * C_d, 8)
+                    print('Iter ' + str(i) + " To lower  " + str(x[1]))
 
             success_change = 0
     print("--- %s seconds ---" % (time.time() - start_time))
@@ -77,10 +79,18 @@ def main():
     disp_repr(strategy.list_of_x)
     print("len array:= " + str(len(fit_value)))
     array_x = reshaped_array(check_x_array, strategy.number_of_x)
-    for i in range(0, strategy.number_of_x):
-        plt.figure(i)
-        plt.plot(array_x[:, i], fit_value, 'g^')
-    print('\n')
+    # for i in range(0, strategy.number_of_x):
+    #     plt.figure(i+1)
+    #     plt.plot(array_x[:, i], fit_value, 'g^')
+    # print('\n')
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+    # numpy_fit = np.asarray(fit_value)
+    x = array_x[:, 0]
+    print(x, '\n')
+    ax.scatter(array_x[:, 0], fit_value)
+    # plt.plot(array_x[:, 0], fit_value, marker='o')
+    # plt.plot(array_x[:, 1], fit_value, 'g^')
     plt.show()
 
 

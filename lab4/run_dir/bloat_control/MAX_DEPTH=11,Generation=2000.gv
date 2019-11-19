@@ -1,0 +1,26 @@
+digraph {
+	graph [label="
+
+best_of_run attained at gen 7  0.099"]
+	0 [label=add]
+	0 -> 1
+	1 [label=pow_by_two]
+	1 -> 2
+	2 [label=add]
+	2 -> 3
+	3 [label=x1]
+	2 -> 4
+	4 [label=x2]
+	0 -> 5
+	5 [label=pow_by_two]
+	5 -> 6
+	6 [label=add]
+	6 -> 7
+	7 [label=add]
+	7 -> 8
+	8 [label=x2]
+	7 -> 9
+	9 [label=x1]
+	6 -> 10
+	10 [label=x9]
+}

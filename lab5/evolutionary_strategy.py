@@ -3,8 +3,8 @@ import numpy as np
 
 MIN_X = -5.12
 MAX_X = 5.12
-GENERATIONS = 200
-CHANGE_DISPERSION = 1
+GENERATIONS = 100
+CHANGE_DISPERSION = 5
 DNA_BOUND = [MIN_X, MAX_X]
 
 
@@ -23,6 +23,8 @@ class EvolutionStrategy:
         ans += "f(x)= " + str(fitness_function(self.list_of_x))
         return ans
 
+
+
     def strategy_1_1(self, array_for_check, array_for_cont):
         child = np.zeros([self.number_of_x, 2])
         i = 0
@@ -37,7 +39,7 @@ class EvolutionStrategy:
             if not i % 2:
                 child[i][0] = gen[0] + gen[1]
             else:
-                child[i][0] = gen[0] - gen[1]
+                child[i][0] = gen[0] +gen[1]
 
             child[i][1] = gen[1]
             if child[i][0] > MAX_X or child[i][0] < MIN_X:

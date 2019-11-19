@@ -146,6 +146,23 @@ class GeneticProgrammingTree:
                 ret = self.right.check_exchangeable(node_two, depth)
             return ret
 
+    def cut_mutation(self):
+        tree_size = self.size()
+        number_to_cut = [randint(0, tree_size)]
+        self._cut_mut(number_to_cut)
+
+    def _cut_mut(self, depth):
+        depth[0] -= 1
+        if depth[0] <= 1:
+            self.value = TERMINALS[randint(0, len(TERMINALS) - 1)]
+            self.left = None
+            self.right = None
+        else:
+            if self.left and depth[0] > 1:
+                self.left._cut_mut(depth)
+            if self.right and depth[0] > 1:
+                self.right._cut_mut(depth)
+
     # Не проверено! Рисование дерева в png
     def draw(self, dot, count):  # dot & count are lists in order to pass "by reference"
         node_name = str(count[0])

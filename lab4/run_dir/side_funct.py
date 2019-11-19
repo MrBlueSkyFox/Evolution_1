@@ -17,10 +17,18 @@ def dataset_generate():
 
 def bit_dataset_generate():
     f_data = []
-    range_f = np.linspace(MIN_VALUE, MAX_VALUE, num=8, endpoint=True)
+    range_f = np.linspace(MIN_VALUE, MAX_VALUE, num=80, endpoint=True)
     for x in range_f:
         f_data.append([x, fitness_function(x, x, x, x, x, x, x, x, x, x)])
     return f_data
+
+
+def second_impl_dataset_generate():
+    dataset = []
+    for x in range(-100, 101, 2):
+        x /= 100
+        dataset.append([x, fitness_function(x, x, x, x, x, x, x, x, x, x)])
+    return dataset
 
 
 def fitness_function(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10):
@@ -42,4 +50,17 @@ def initialization_population():
             t.generate_grow_tree(max_depth=current_max_depth)
             # t.generate_tree(full_type=False, max_depth=current_max_depth)
             pop.append(t)
+    return pop
+
+
+def init_pop_test():
+    pop = []
+    for i in range(int(POPULATION_SIZE / 2)):
+        t = GeneticProgrammingTree()
+        t.generate_full_tree(max_depth=MAX_DEPTH)
+        pop.append(t)
+    for j in range(int(POPULATION_SIZE / 2)):
+        t = GeneticProgrammingTree()
+        t.generate_grow_tree(max_depth=MAX_DEPTH)
+        pop.append(t)
     return pop
