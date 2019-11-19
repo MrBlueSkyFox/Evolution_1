@@ -1,5 +1,5 @@
-from lab4.Genetic_programming_operators import selection, crossover, \
-    cut_mutation, fitness, mutation
+from lab4.Genetic_programming_operators import selection, crossover, fitness, mutation, \
+    cut_mutation
 from lab4.run_dir.side_funct import initialization_population, bit_dataset_generate, \
     second_impl_dataset_generate, init_pop_test, dataset_generate
 from lab4.functions import POPULATION_SIZE, GENERATIONS
