@@ -1,11 +1,25 @@
 import time
 
 import numpy as np
-from lab5.side_functions import random_double
+from lab5.side_functions import random_double, strategy_multiple, selection,  fitness_function
 from lab5.evolutionary_strategy import EvolutionStrategy
 from lab5.evolutionary_strategy import MAX_X, MIN_X, GENERATIONS, CHANGE_DISPERSION
 # from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
+
+
+def find_nearest_1(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return array[idx], idx
+
+
+def init_multiply(range_pop, n):
+    strategy_pull = []
+    for i in range(0, range_pop):
+        strategy = init_strategy(n)
+        strategy_pull.append(strategy)
+    return strategy_pull
 
 
 def init_strategy(n):
@@ -35,7 +49,44 @@ def disp_repr(list_of_x):
     print(ans)
 
 
-def main():
+def run_strategy_multiply(pop, generations, variables=2):
+    strategies = init_multiply(pop, variables)
+    for strategy in strategies:
+        print(strategy)
+    start_time = time.time()
+    for i in range(0, generations):
+        b_gen_time = time.time()
+        new_pull = []
+        couples = selection(strategies)
+        # for j in range(0,len(couples)):
+        for pair in couples:
+            offspring = strategy_multiple(pair[0], pair[1])
+            for el_offspring in offspring:
+                strategies.append(EvolutionStrategy(el_offspring))
+        fitness_array = []
+        for strategy in strategies:
+            strategy = strategy.mutation_outside()
+            strategy.fitness_value = fitness_function(strategy.list_of_x)
+            fitness_array.append(strategy.fitness_value)
+        next_generation = []
+        # strategies.extend()
+        for j in range(0, pop + 1):
+            _, index = find_nearest_1(fitness_array, 0)
+            # next_generation.append(best_strategy)
+            next_generation.append(strategies[index])
+            fitness_array.pop(index)
+            strategies.pop(index)
+        strategies = next_generation
+        # for s in strategies:
+        #     print(s)
+        print("Generation " + str(i) + " time --%s seconds-- " % (time.time() - b_gen_time))
+    # for gen in strategies:
+    print('Full time ' + " time --%s seconds-- " % (time.time() - start_time))
+    for strategy in strategies:
+        print(strategy)
+
+
+def run_strat_1():
     n = 2
     strategy = init_strategy(n)
     success_change = 0
@@ -94,4 +145,5 @@ def main():
     plt.show()
 
 
-main()
+# run_strat_1()
+run_strategy_multiply(5, 10)
