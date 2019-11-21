@@ -86,6 +86,14 @@ def run_strategy_multiply(pop, generations, variables=2):
     #     print(strategy)
     for i in range(0, 1):
         print(strategies[i])
+    # x = np.linspace(-5.12, 5.12, 100)
+    # y = np.linspace(-5.12, 5.12, 100)
+    # X, Y = np.meshgrid(x, y)
+    # Z = f(X, Y)
+    # fig = plt.figure()
+    # ax = plt.axes(projection='3d')
+    # ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
+    #                 cmap='viridis', edgecolor='none')
 
 
 def run_strat_1():
@@ -148,4 +156,5 @@ def run_strat_1():
 
 
 # run_strat_1()
-run_strategy_multiply(30, 100)
+# run_strategy_multiply(30, 100)
+run_strategy_multiply(4000, 500, variables=3)

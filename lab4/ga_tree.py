@@ -1,13 +1,9 @@
 import math
 from random import randint, random
 
-from lab4.functions import FUNCTIONS, TERMINALS, FUNCTIONS_WITH_ONE_ARG, MIN_DEPTH, MAX_DEPTH, POPULATION_SIZE
+from lab4.functions import FUNCTIONS, TERMINALS, FUNCTIONS_WITH_ONE_ARG, MIN_DEPTH
 from IPython.display import Image, display
 from graphviz import Digraph, Source
-
-
-def fitness_function(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10):
-    return x1 ** 2 + x2 ** 2 + x3 ** 2 + x4 ** 2 + x4 ** 2 + x4 ** 2 + x5 ** 2 + x6 ** 2 + x7 ** 2 + x8 ** 2 + x9 ** 2 + x10 ** 2
 
 
 class GeneticProgrammingTree:
@@ -162,15 +158,6 @@ class GeneticProgrammingTree:
         if self.right: t.right = self.right.build_subtree()
         return t
 
-    # TODO
-    # Parent1- доминантный parent 2-рецесивный
-    # Выбрать рандомную точку в 1-ом родителе
-    # Выбрать рандомную точку в 2-ом родителе
-    # Проверить подхотит ли точка P2 для P1 т.е.
-    # Если у первого родителя выбран терминал,у заменяющего поддерева тоже должен быть терминал
-    # Если функция,то заменяющая тоже должен быть  функцией(Из функционального множества)
-    # не должно возникать проблем функци с 2 арг и 1 т.к. надо взять всё от точки выбора(все l и r chl)
-    # Аррат серый(надо найти)
     def check_exchangeable(self, node_two, depth):  # depth pass like list for reference
         depth[0] -= 1
         if depth[0] <= 1:

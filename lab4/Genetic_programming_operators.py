@@ -1,6 +1,7 @@
 from statistics import mean
 
 from lab4.functions import TOURNAMENT_SIZE, CROSSOVER_CHANCE, MUTATE_CHANCE
+import math
 import copy
 import random
 
@@ -40,11 +41,18 @@ def fitness(individual, dataset):
     for ds in dataset:
         tree.append(individual.comp_sec(ds))
         fit.append(ds[len(ds) - 1])
-    a = mean(tree)
-    b = mean(fit)
+    s = 0
+    try:
+        for i in range(0, len(tree)):
+            s += math.pow(tree[i] - fit[i], 2)
+    except Exception:
+        s = math.inf
+    # a = mean(tree)
+    # b = mean(fit)
     # if 0.9 <= a / b <= 1.2:
-    #     individual.print_tree_node()
-    return a / b
+    #    individual.print_tree_node()
+    # return a / b
+    return math.sqrt(s)
 
 
 # def fitness(individual, dataset, BLOAT_CONTROL=True):
