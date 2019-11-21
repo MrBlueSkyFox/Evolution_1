@@ -56,7 +56,7 @@ def run_strategy_multiply(pop, generations, variables=2):
     start_time = time.time()
     for i in range(0, generations):
         b_gen_time = time.time()
-        new_pull = []
+        # new_pull = []
         couples = selection(strategies)
         # for j in range(0,len(couples)):
         for pair in couples:
@@ -86,14 +86,6 @@ def run_strategy_multiply(pop, generations, variables=2):
     #     print(strategy)
     for i in range(0, 1):
         print(strategies[i])
-    # x = np.linspace(-5.12, 5.12, 100)
-    # y = np.linspace(-5.12, 5.12, 100)
-    # X, Y = np.meshgrid(x, y)
-    # Z = f(X, Y)
-    # fig = plt.figure()
-    # ax = plt.axes(projection='3d')
-    # ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
-    #                 cmap='viridis', edgecolor='none')
 
 
 def run_strat_1():
