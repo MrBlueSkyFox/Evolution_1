@@ -113,6 +113,48 @@ class GeneticProgrammingTree:
         else:
             return self.value
 
+    def comp_sec(self, x):
+        if self.value in FUNCTIONS_WITH_ONE_ARG:
+            d = 0
+            try:
+                d = self.value(self.left.comp_sec(x))
+                return d
+            except Exception as e:
+                print(str(e) + '\n')
+                return d
+        elif self.value in FUNCTIONS:
+            d1 = (0)
+            try:
+                d1 = (self.value(self.left.comp_sec(x), self.right.comp_sec(x)))
+                return d1
+            except Exception as e:
+                print(str(e) + '\n')
+                return d1
+        elif any(str(self.value) in s for s in TERMINALS):
+            if self.value == 'x1':
+                return x[0]
+            if self.value == 'x2':
+                return x[1]
+            if self.value == 'x3':
+                return x[2]
+            if self.value == 'x4':
+                return x[3]
+            if self.value == 'x5':
+                return x[4]
+            if self.value == 'x6':
+                return x[5]
+            if self.value == 'x7':
+                return x[6]
+            if self.value == 'x8':
+                return x[7]
+            if self.value == 'x9':
+                return x[8]
+            if self.value == 'x10':
+                return x[9]
+            return x
+        else:
+            return self.value
+
     def build_subtree(self):
         t = GeneticProgrammingTree()
         t.value = self.value

@@ -1,7 +1,7 @@
 import time
 
 import numpy as np
-from lab5.side_functions import random_double, strategy_multiple, selection,  fitness_function
+from lab5.side_functions import random_double, strategy_multiple, selection, fitness_function
 from lab5.evolutionary_strategy import EvolutionStrategy
 from lab5.evolutionary_strategy import MAX_X, MIN_X, GENERATIONS, CHANGE_DISPERSION
 # from mpl_toolkits import mplot3d
@@ -82,8 +82,10 @@ def run_strategy_multiply(pop, generations, variables=2):
         print("Generation " + str(i) + " time --%s seconds-- " % (time.time() - b_gen_time))
     # for gen in strategies:
     print('Full time ' + " time --%s seconds-- " % (time.time() - start_time))
-    for strategy in strategies:
-        print(strategy)
+    # for strategy in strategies:
+    #     print(strategy)
+    for i in range(0, 1):
+        print(strategies[i])
 
 
 def run_strat_1():
@@ -146,4 +148,4 @@ def run_strat_1():
 
 
 # run_strat_1()
-run_strategy_multiply(5, 10)
+run_strategy_multiply(30, 100)

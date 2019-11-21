@@ -1,7 +1,7 @@
 from lab4.Genetic_programming_operators import selection, crossover, fitness, mutation, \
     cut_mutation
 from lab4.run_dir.side_funct import initialization_population, bit_dataset_generate, \
-    second_impl_dataset_generate, init_pop_test, dataset_generate
+    second_impl_dataset_generate, init_pop_test, dataset_generate, dt_gen
 from lab4.functions import POPULATION_SIZE, GENERATIONS
 import time
 import copy
@@ -67,7 +67,8 @@ def next_generation(count_generation, population, fitness_data, dataset, best_of
 
 def main(uniq_name_prefix="3"):
     # dataset = dataset_generate()
-    dataset = bit_dataset_generate()
+    # dataset = bit_dataset_generate()
+    dataset = dt_gen()
     population = initialization_population()
     fit_time = time.time()
     fitness_data = [fitness(population[i], dataset) for i in range(len(population))]
@@ -83,7 +84,7 @@ def main(uniq_name_prefix="3"):
                                                                                   best_of_run_f=best_of_run_f,
                                                                                   best_of_run_gen=best_of_run_gen,
                                                                                   count_generation=generation)
-        if best_of_run == 1:
+        if best_of_run_f == 1:
             break
     print("\n\n_________________________________________________\nEND OF RUN\nbest_of_run attained at gen " + str(
         best_of_run_gen) +
@@ -94,7 +95,7 @@ def main(uniq_name_prefix="3"):
     best_of_run.draw_tree(str(uniq_name_prefix), message)
     print('---%s sec for ALL' % (time.time() - fit_time))
     for x in dataset:
-        print("x= " + str(x[0]) + " tree val= " + str(best_of_run.compute_tree(x[0])) + " function val= " + str(x[1]))
+        print("tree val= " + str(best_of_run.comp_sec(x)) + " function val= " + str(x[len(x) - 1]))
 
 
 # main('gen=100,pop=100,max_depth=15,func=3')
@@ -102,4 +103,6 @@ def main(uniq_name_prefix="3"):
 # main('depth=13,pop=80,funct=2')
 # main('depth=13,pop=80,funct=2,Gen=600')
 # main('depth=10,pop=80,funct=2,Gen=600,mut=0.01_test')
-main('fintess1/depth=13,pop=250')
+# main('fintess1/depth=13,pop=250')
+# main('fintess1/max_d=11,min_d=6,pop=80')
+main('fintess1/three_var')

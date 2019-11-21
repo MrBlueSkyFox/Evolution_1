@@ -23,6 +23,25 @@ def bit_dataset_generate():
     return f_data
 
 
+def dt_gen():
+    f_data = []
+    for i in range(0, 120):
+        x = np.random.uniform(MIN_VALUE, MAX_VALUE, 2)
+        ins = np.append(x, fit_new_func(x))
+        f_data.append(ins)
+        print(
+            ins
+        )
+    return f_data
+
+
+def fit_new_func(x):
+    out = 0
+    for i in x:
+        out += i ** 2
+    return out
+
+
 def second_impl_dataset_generate():
     dataset = []
     for x in range(-100, 101, 2):
