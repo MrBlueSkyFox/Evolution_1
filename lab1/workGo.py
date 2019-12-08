@@ -21,22 +21,22 @@ def init(number_species):
 
 def generation(map_s):
     pop_len = len(map_s)
-    chanceOfMutation = 0.1
+    chanceOfMutation = 0.2
     chanceOfCrossover = 0.9
     offsp_map = breeding(map_s)
     # for i in range(0, len(map_s)):
     #     print(map_source[i].f(), "  ", offsp_map[i].f())
-    print('Размножение')
-    print(offsp_map)
+    # print('Размножение')
+    # print(offsp_map)
     pairs = couples(offsp_map)
     cros = []
     for pair in pairs:
         # print(pair[0])
         cros.extend(crossover(pair[0], pair[1], pop_len, chanceOfCrossover))
-    print('Кроссинговер')
+    # print('Кроссинговер')
     for c in cros:
         c.x = c.from_int()
-    print(cros)
+    # print(cros)
     for cd in cros:
         cd.x = cd.to_int()
     mutation = []
@@ -45,24 +45,25 @@ def generation(map_s):
         mutation.append(mutate(mut, pop_len, chanceOfMutation))
     for m in mutation:
         m.x = m.from_int()
-    print('Мутация')
-    print(mutation)
+    # print('Мутация')
+    # print(mutation)
 
     return mutation
 
 
-def main_1():
-    pop_len = 20
+def main_1(pop=20, generation_max=50):
+    pop_len = pop
     map_source = init(pop_len)
     x_start = []
     y_start = []
     for x in map_source:
         x_start.append(x.x)
         y_start.append(x.fit_func())
-    for i in range(0, 50):
+    for i in range(0, generation_max):
         print('Generation ' + str(i))
         map_source = generation(map_source)
-        print("\n")
+        # print("\n")
+    print(map_source)
     ylist = []
     xlist = []
     for x in map_source:
@@ -87,4 +88,4 @@ def main_1():
     plt.show()
 
 
-main_1()
+main_1(25,500)
