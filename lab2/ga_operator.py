@@ -3,6 +3,9 @@ import random
 from operator import attrgetter
 
 
+# from lab2.lab2_main import max_x, min_x
+
+
 def breeding(species, pop_length):
     of = copy.deepcopy(species)
     offsprings = []
@@ -65,12 +68,12 @@ def sbx_crossover(specie1, specie2, chance_crossover, flag_for_3n=False):
         if flag_for_3n:
             p1.x3 = 0.5 * (1 - beta) * specie2.f3() + (1 + beta) * specie2.f3()
             p2.x3 = 0.5 * (1 - beta) * specie1.f3() + (1 + beta) * specie1.f3()
-        p1_x1_f = check_boundary(p1.x1)
-        p1_x2_f = check_boundary(p1.x2)
-        p1_x3_f = check_boundary(p1.x3)
-        p2_x1_f = check_boundary(p2.x1)
-        p2_x2_f = check_boundary(p2.x2)
-        p2_x3_f = check_boundary(p2.x3)
+        p1_x1_f = check_boundary(p1.x1, p1.min_x, p1.max_x)
+        p1_x2_f = check_boundary(p1.x2, p1.min_x, p1.max_x)
+        p1_x3_f = check_boundary(p1.x3, p1.min_x, p1.max_x)
+        p2_x1_f = check_boundary(p2.x1, p2.min_x, p2.max_x)
+        p2_x2_f = check_boundary(p2.x2, p2.min_x, p2.max_x)
+        p2_x3_f = check_boundary(p2.x3, p2.min_x, p2.max_x)
         if not (p1_x1_f or p1_x2_f or p1_x3_f or p2_x1_f or p2_x2_f or p2_x3_f):
             return [copy.deepcopy(specie1), copy.deepcopy(specie2)]
     return [p1, p2]
@@ -78,24 +81,24 @@ def sbx_crossover(specie1, specie2, chance_crossover, flag_for_3n=False):
 
 def mutation(specie, chance_mutation, flag_for_3n=False):
     a = copy.deepcopy(specie)
-    if (random.random() <= chance_mutation):
-        a.x1 = round(random.uniform(-5.12, 5.12), 5)
-    if (random.random() <= chance_mutation):
-        a.x2 = round(random.uniform(-5.12, 5.12), 5)
+    if random.random() <= chance_mutation:
+        a.x1 = round(random.uniform(a.min_x, a.max_x), 5)
+    if random.random() <= chance_mutation:
+        a.x2 = round(random.uniform(a.min_x, a.max_x), 5)
     if flag_for_3n == True:
-        if (random.random() <= chance_mutation):
-            a.x3 = round(random.uniform(-5.12, 5.12), 5)
-            if not (check_boundary(a.x3)):
+        if random.random() <= chance_mutation:
+            a.x3 = round(random.uniform(a.min_x, a.max_x), 5)
+            if not (check_boundary(a.x3, a.min_x, a.max_x)):
                 a.x3 = specie.x3
-    if not (check_boundary(a.x1)):
+    if not (check_boundary(a.x1, a.min_x, a.max_x)):
         a.x1 = specie.x1
-    if not (check_boundary(a.x2)):
+    if not (check_boundary(a.x2, a.min_x, a.max_x)):
         a.x2 = specie.x2
     return a
 
 
-def check_boundary(x):
-    if x > 5.12 or x < 5.12:
+def check_boundary(x, min_x, max_x):
+    if x > min_x or x < max_x:
         return False
     else:
         return True
