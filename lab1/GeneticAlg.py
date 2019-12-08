@@ -90,7 +90,8 @@ class GeneticAlg:
         return self.x
 
     def fit_func(self):
-        return (1.85 - self.x) * math.cos(3.5 * self.x - 0.5)
+        # return (1.85 - self.x) * math.cos(3.5 * self.x - 0.5)
+        return math.sin(self.x) / (1 + math.exp(-self.x))
 
     def to_int(self):
         x = float(self.x)

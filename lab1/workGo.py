@@ -4,8 +4,10 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
+# max_x = 10
+# min_x = -10
 max_x = 10
-min_x = -10
+min_x = 0.5
 n = 16
 
 
@@ -67,14 +69,19 @@ def main_1():
         xlist.append(x.x)
         ylist.append(x.fit_func())
     _, ax = plt.subplots()
-    x_graf = np.arange(-10, 10, 0.1)
+    # x_graf = np.arange(-10, 10, 0.1)
+    x_graf = np.arange(0.5, 10, 0.1)
     y_graf = []
     for x in x_graf:
-        y_graf.append((1.85 - x) * math.cos(3.5 * x - 0.5))
+        # y_graf.append((1.85 - x) * math.cos(3.5 * x - 0.5))
+        y_graf.append(
+            math.sin(x) / (1 + math.exp(-x))
+        )
     ax.plot(x_graf, y_graf, lw=2, color='red')
     ax.plot(xlist, ylist, 'g^')
     ax.plot(x_start, y_start, 'bs')
-    ax.set_title("(1.85-x)*cos(3.5*x-0.5)")
+    # ax.set_title("(1.85-x)*cos(3.5*x-0.5)")
+    ax.set_title("sin(x) / (1+ exp(-x))")
     ax.set_ylabel('fin function val')
     ax.set_xlabel('x value')
     plt.show()
