@@ -22,7 +22,7 @@ class SACO:
         for row_i, row_city_dist in enumerate(self.distance_matrix):
             for column_i, column_city in enumerate(self.distance_matrix):
                 if row_city_dist[column_i] != 0:
-                    eta_matrix[row_i, column_i] = 1 / row_city_dist
+                    eta_matrix[row_i, column_i] = 1 / row_city_dist[column_i]
                 else:
                     eta_matrix[row_i, column_i] = 0
                 # dist_matrix[row_i, column_i] = self.__calculate_dist(row_city, column_city)
@@ -55,22 +55,22 @@ class SACO:
                 for city_m in ant.unvisited:
                     denominator = 0
                     numerator = (math.pow(self.pheromone_matrix_aka_TAU[ant.currCity.index, city_m.index], self.alpha) *
-                                 self.eta_matrix[ant.currCity.index, city_m.index], self.beta)
+                                 math.pow(self.eta_matrix[ant.currCity.index, city_m.index], self.beta))
                     for city in ant.unvisited:
                         denominator += (math.pow(self.pheromone_matrix_aka_TAU[ant.currCity.index, city.index],
-                                                 self.alpha) *
-                                        math.pow(self.eta_matrix[ant.currCity.index, city.index], self.beta))
+                                                 self.alpha) * math.pow(self.eta_matrix[ant.currCity.index, city.index],
+                                                                        self.beta))
                     p_ij = numerator / denominator
-                    ant.transition_prob.append(p_ij)
+                    ant.transition_prob.append([p_ij, city_m])
 
 
-def start(self, population=10, generations=10):
-    GENERATIONS = generations
-    POP = population
-    ants = []
-    for i in range(0, POP):
-        ants.append(Ant(i, self))
-    for generation in range(0, GENERATIONS):
-        print('Gen ' + str(generations))
-        for ant in ants:
-            self.path_create(ant)
+    def start(self, population=10, generations=10):
+        GENERATIONS = generations
+        POP = population
+        ants = []
+        for i in range(0, POP):
+            ants.append(Ant(i, self))
+        for generation in range(0, GENERATIONS):
+            print('Gen ' + str(generations))
+            for ant in ants:
+                self.path_create(ant)

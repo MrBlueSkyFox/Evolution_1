@@ -5,7 +5,8 @@ from lab6.work_dir.City import City
 def init_map():
     # path = '/home/tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
     # path = '/lab6/d/inputData.txt'
-    path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
+    # path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
+    path = 'C:/Users/Tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
     data_file = open(path, 'r')
     list_matrix = data_file.readlines()
     data_file.close()
@@ -26,6 +27,8 @@ def main():
     city_map = init_map()
     SACO_repr = SACO(alpha=ALPHA, beta=BETA, epsilon=EPSILON, rho=RHO,
                      city_map=city_map, init_pheromeon=INIT_PHEROMEON)
+
+    SACO_repr.start()
 
 
 main()
