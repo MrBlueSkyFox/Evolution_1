@@ -5,8 +5,8 @@ from lab6.work_dir.City import City
 def init_map():
     # path = '/home/tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
     # path = '/lab6/d/inputData.txt'
-    # path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
-    path = 'C:/Users/Tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
+    path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
+    # path = 'C:/Users/Tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
     data_file = open(path, 'r')
     list_matrix = data_file.readlines()
     data_file.close()
@@ -20,15 +20,17 @@ def init_map():
 
 def main():
     ALPHA = 1
-    BETA = 3
-    EPSILON = 0.01
-    RHO = 0.6  # Evaporation Constant
+    BETA = 2
+    EPSILON = 0.1
+    RHO = 0.3  # Evaporation Constant
     INIT_PHEROMEON = 1
     city_map = init_map()
     SACO_repr = SACO(alpha=ALPHA, beta=BETA, epsilon=EPSILON, rho=RHO,
-                     city_map=city_map, init_pheromeon=INIT_PHEROMEON)
+                     city_map=city_map, init_pheromone=INIT_PHEROMEON)
 
-    SACO_repr.start()
+    # SACO_repr.start(population=10, generations=50)
+    if __name__ == '__main__':
+        SACO_repr.multi_proc_start(4, 50)
 
 
 main()
