@@ -45,7 +45,12 @@ class Swarm():
             xdata.append(self.const['starting_value'][i].positions[0])
             ydata.append(self.const['starting_value'][i].positions[1])
             zdata.append(self.fitness([xdata[-1], ydata[-1]]))
-        ax.scatter3D(xdata, ydata, zdata, marker='o')
+        ax.scatter3D(xdata[1:], ydata[1:], zdata[1:], marker='o')
+        ax.scatter3D(xdata[0], ydata[0], zdata[0], marker='x', facecolor='yellow')
+        # ax.set_zlim()
+        plt.xlim(-6, 6)
+        plt.ylim(-6, 6)
+        ax.set_zlim(0,60)
 
     def __str__(self):
         ans = 'For ' + str(self.const['n']) + ' parametrs\n'

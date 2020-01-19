@@ -2,10 +2,9 @@ from lab6.work_dir.SACO import SACO
 from lab6.work_dir.City import City
 
 
-def init_map():
+def init_map(path):
     # path = '/home/tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
     # path = '/lab6/d/inputData.txt'
-    path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
     # path = 'C:/Users/Tigran/PycharmProjects/Evolution_1/lab6/d/inputData.txt'
     data_file = open(path, 'r')
     list_matrix = data_file.readlines()
@@ -18,19 +17,24 @@ def init_map():
     return city_map
 
 
-def main():
+def main(path):
     ALPHA = 1
-    BETA = 2
-    EPSILON = 0.1
-    RHO = 0.3  # Evaporation Constant
-    INIT_PHEROMEON = 1
-    city_map = init_map()
+    BETA = 10
+    EPSILON = 0.2
+    RHO = 0.6  # Evaporation Constant
+    INIT_PHEROMEON = 10
+    # path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
+    city_map = init_map(path)
     SACO_repr = SACO(alpha=ALPHA, beta=BETA, epsilon=EPSILON, rho=RHO,
                      city_map=city_map, init_pheromone=INIT_PHEROMEON)
 
-    # SACO_repr.start(population=10, generations=50)
-    if __name__ == '__main__':
-        SACO_repr.multi_proc_start(4, 50)
+    SACO_repr.start(population=10, generations=100)
+    # if __name__ == '__main__':
+    #     SACO_repr.multi_proc_start(4, 50)
 
 
-main()
+path = 'C:/Users/User1/Documents/Evolution_1/lab6/d/inputData.txt'
+path1 = 'C:/Users/User1/Documents/Evolution_1/lab6/d/secondData.txt'
+
+main(path)
+# main(path1)
